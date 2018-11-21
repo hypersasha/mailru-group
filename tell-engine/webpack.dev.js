@@ -9,7 +9,8 @@ module.exports = merge(common, {
             '.ngrok.io',
             '.vk.com'
         ],
-        disableHostCheck: true
+        host: '0.0.0.0',
+        port: 10880
     },
     module: {
         rules: [
