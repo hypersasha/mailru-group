@@ -11,13 +11,6 @@ class App extends Component {
     return (
       <div className="App">
         <StatusBar/>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <div className="system-info">
-            <div className="title">Операционная система</div>
-            <div className="value">{osname}</div>
-          </div>
-        </header>
       </div>
     );
   }
