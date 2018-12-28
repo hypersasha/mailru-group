@@ -10,16 +10,14 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <StatusBar/>
-                <br/>
                 <div className="expo">
                     <p className={"docTip"}>Пример простейшего поля ввода. Компонент TextArea.</p>
                     <TextArea style={{maxHeight: 150, minHeight: 44}}
                               defaultValue={"Кто проживает на дне океана?"}
                               initialHeight={58}
                               grow={true}
+                              maxLength={64}
                               onChange={(e) => { console.log(e.target.value) }}
-                              className={"revenge"} // from App.css
                               placeholder={"Пример поля ввода..."}/>
                 </div>
             </div>

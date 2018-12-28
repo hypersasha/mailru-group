@@ -1,13 +1,35 @@
 .textarea {
-  border: 1px solid #e3e3e3;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  padding: 10px;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 12px;
+  width: 100%;
+  line-height: 1.5em;
   text-align: left;
   resize: none;
+  outline: none;
+  color: #666666;
 
-  &-placeholder {
-    opacity: 0.5;
+  -webkit-transition: box-shadow 0.2s, border-color 0.2s;
+  -moz-transition: box-shadow 0.2s, border-color 0.2s;
+  -ms-transition: box-shadow 0.2s, border-color 0.2s;
+  -o-transition: box-shadow 0.2s, border-color 0.2s;
+  transition: box-shadow 0.2s, border-color 0.2s;
 
-    &.hidden {
-      display: none;
-    }
+  // Fix padding and 100% width problem.
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  &:focus {
+    color: #000000;
+    box-shadow: 0 3px 4px rgba(100,149,237,0.15);
+    border-color: cornflowerblue;
+    -webkit-transition: box-shadow 0.2s, border-color 0.2s;
+    -moz-transition: box-shadow 0.2s, border-color 0.2s;
+    -ms-transition: box-shadow 0.2s, border-color 0.2s;
+    -o-transition: box-shadow 0.2s, border-color 0.2s;
+    transition: box-shadow 0.2s, border-color 0.2s;
   }
 }

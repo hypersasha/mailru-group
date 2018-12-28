@@ -90,13 +90,24 @@ class TextArea extends Component {
         }));
     }
 
+    /**
+     * Handles content change.
+     * @param e
+     * @constructor
+     */
     HandleContentChange(e) {
         if (this.props.grow) {
             this.Resize();
         }
 
         if (!this.isControlledOutside) {
-            this.setState({ value: e.target.value });
+            if (this.props.maxLength) {
+                if (e.target.value.length < this.props.maxLength) {
+                    this.setState({ value: e.target.value });
+                }
+            } else {
+                this.setState({ value: e.target.value });
+            }
         }
 
         // Call user onChange function
@@ -127,7 +138,8 @@ TextArea.propTypes = {
     grow: PropTypes.bool,
     className: PropTypes.string,
     style: PropTypes.object,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    maxLength: PropTypes.number
 };
 
 export default TextArea;
