@@ -1,7 +1,47 @@
 
+.App {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
+}
+
+.expo {
+  padding: 10px;
+  background: #e3e3e3;
+  border-radius: 3px;
+  min-height: 120px;
+}
+
+.docTip {
+  font-size: 12px;
+}
+
+.revenge {
+  background-color: #000000;
+  color: #FFFFFF;
+  width: 250px;
+  padding: 10px;
+  border-radius: 4px;
+  outline: none;
+  -webkit-transition: background-color 0.2s;
+  -moz-transition: background-color 0.2s;
+  -ms-transition: background-color 0.2s;
+  -o-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.revenge:focus {
+  background-color: #282c34;
+  -webkit-transition: background-color 0.2s;
+  -moz-transition: background-color 0.2s;
+  -ms-transition: background-color 0.2s;
+  -o-transition: background-color 0.2s;
+  transition: background-color 0.2s;
 }
 
 .App-header {
