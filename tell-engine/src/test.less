@@ -1,8 +1,3 @@
-.App {
-  text-align: center;
-  background-color: #282c34;
-}
-
 .system-info {
   display: flex;
   flex-direction: row;
@@ -19,4 +14,40 @@
       border-right: 2px solid rgba(255,255,255,0.4);
     }
   }
+}
+
+html,body {
+  background: #D7E4F4;
+}
+
+@baseTransform: translate(-50%, -50%);
+
+.logo {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 20px 15px;
+  background: #4A90E2;
+  border-radius: 4px;
+
+  animation: Pulse 40s infinite ease-in-out;
+}
+
+@keyframes Pulse {
+  0% { background: #f44336 }
+  10% { background: #e91e63 }
+  20% { background: #9c27b0 }
+  30% { background: #673ab7 }
+  40% { background: #2196f3 }
+  50% { background: #00bcd4 }
+  60% { background: #4caf50 }
+  70% { background: #ffeb3b }
+  80% { background: #ff9800 }
+  90% { background: #ff5722 }
+  100% { background: #f44336 }
 }
