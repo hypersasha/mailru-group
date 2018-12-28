@@ -1,13 +1,15 @@
 ### Компонент `<TextArea>`
 Данный компонент добавляет элемент `textarea` на страницу Вашего приложения.
 ```jsx
-<TextArea style={{maxHeight: 150, minHeight: 44}}
-                              defaultValue={"Кто проживает на дне океана?"}
-                              initialHeight={58}
-                              grow={true}
-                              onChange={(e) => { console.log(e.target.value) }}
-                              className={"revenge"}
-                              placeholder={"Пример поля ввода..."}/>
+<TextArea
+    style={{maxHeight: 150, minHeight: 44}}
+    defaultValue={"Кто проживает на дне океана?"}
+    initialHeight={58}
+    grow={true}
+    onChange={(e) => { console.log(e.target.value) }}
+    className={"revenge"}
+    placeholder={"Пример поля ввода..."}
+    />
 ```
 Список props, которые может принимать данный компонент.
 
