@@ -1,0 +1,11 @@
+{
+  "files": [
+    "ibds/src/*.ts",
+    "ibds/src/**/*.ts"
+  ],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "es5",
+    "lib": ["es5", "es6", "dom"]
+  }
+}
