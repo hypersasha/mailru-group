@@ -1,3 +1,5 @@
+<img src="https://cdn.dribbble.com/users/85713/screenshots/3775213/herbal_dribble.gif" width="250" />
+
 # Instant Brew
 Это простой чистый проект для быстрого старта работ над приложением ReactJS.
 Сборка осуществляется с помощью Webpack. Приложение поддерживает платформу VK Apps.
