@@ -17,6 +17,7 @@
 
 # ts build server
 /ibds/dist/**/*
+/ibds/uploads/**/*
 
 # misc
 .DS_Store

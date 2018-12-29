@@ -1,5 +1,6 @@
 import * as express from "express";
 import {Routes} from "./Routes";
+import * as path from "path";
 
 class NetworkLayer {
 
@@ -8,6 +9,7 @@ class NetworkLayer {
 
     constructor() {
         this.app = express();
+        this.app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
         this.config();
         this.routesMap.routes(this.app);
     }
