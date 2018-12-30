@@ -1,0 +1,33 @@
+.droppable {
+  padding: 10px;
+  border: 1px dashed #62B12A;
+  border-radius: 3px;
+  background-color: #D6F4C1;
+
+  &.disabled {
+    background-color: #f5f5f5;
+    border-color: #cccccc
+  }
+}
+
+.dropbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  -webkit-transition: background-color 0.2s;
+  -moz-transition: background-color 0.2s;
+  -ms-transition: background-color 0.2s;
+  -o-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+
+  &.dragOver {
+    background-color: #B3DE95;
+  }
+
+  .dropbox-area {
+    p {
+      color: #40860C;
+      font-size: 13px;
+    }
+  }
+}

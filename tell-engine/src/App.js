@@ -8,8 +8,6 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        this.HandleFileChange = this.HandleFileChange.bind(this);
-        this.HandleUpload = this.HandleUpload.bind(this);
     }
     render() {
         return (
