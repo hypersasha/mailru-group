@@ -30,7 +30,7 @@ Avatar.defaultProps = {
 Avatar.propTypes = {
     size: PropTypes.number,
     radius: PropTypes.string,
-    backgroundPosition: PropTypes.string,
+    imagePosition: PropTypes.string,
     image: PropTypes.string,
     className: PropTypes.string
 };
