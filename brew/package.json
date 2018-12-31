@@ -10,7 +10,8 @@
   "scripts": {
     "brew": "webpack-dev-server --config ./webpack.dev.js",
     "product-brew": "webpack --config ./webpack.prod.js",
-    "ibds": "gulp start"
+    "ibds": "gulp start",
+    "deploy": "node gh-pages.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,6 +36,7 @@
     "express": "^4.16.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^2.0.0",
+    "gh-pages": "^2.0.1",
     "gulp": "^4.0.0",
     "gulp-nodemon": "^2.4.2",
     "gulp-typescript": "^5.0.0",
