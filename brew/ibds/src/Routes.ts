@@ -23,7 +23,7 @@ export class Routes {
 
         // Uploads a new file on the server.
         app.post('/upload', (req, res) => {
-            let saveDir = path.resolve('./ibds/uploads/');
+            let saveDir = path.resolve('./uploads/');
             let fu : FileUploader = new FileUploader(saveDir,31457280, 10); // 30 MB and 1 file maximum
 
             // Lets create config for busboy

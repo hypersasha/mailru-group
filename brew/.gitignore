@@ -18,6 +18,8 @@
 # ts build server
 /ibds/dist/**/*
 /ibds/uploads/**/*
+!/ibds/dist/now.json
+!/ibds/dist/package.json
 
 # misc
 .DS_Store

@@ -17,7 +17,7 @@ export class FileUploader {
     constructor(saveTo : string, max_file_size_bytes : number, files_count : number) {
         this.maxFileSize = max_file_size_bytes || 5242880; // 5MB by default
         this.filesCount = files_count || 1;
-        this.saveTo = saveTo || path.resolve('../uploads/');
+        this.saveTo = saveTo || path.resolve('./uploads/');
 
         console.log('Initializing FileUploader with path: ');
         console.log(saveTo);

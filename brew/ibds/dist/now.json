@@ -1,0 +1,17 @@
+{
+  "name": "zeit-brew",
+  "alias": "instant-brew",
+  "static": {
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      }
+    ]
+  }
+}

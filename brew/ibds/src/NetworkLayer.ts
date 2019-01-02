@@ -9,7 +9,7 @@ class NetworkLayer {
 
     constructor() {
         this.app = express();
-        this.app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
+        this.app.use('/uploads', express.static(path.resolve(__dirname, './uploads')));
         this.config();
         this.routesMap.routes(this.app);
     }

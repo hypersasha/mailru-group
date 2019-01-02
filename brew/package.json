@@ -11,7 +11,8 @@
     "brew": "webpack-dev-server --config ./webpack.dev.js",
     "product-brew": "webpack --config ./webpack.prod.js",
     "ibds": "gulp start",
-    "deploy": "node gh-pages.js"
+    "deploy": "node gh-pages.js",
+    "deploy-now": "now ./ibds/dist"
   },
   "eslintConfig": {
     "extends": "react-app"
