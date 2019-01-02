@@ -31,7 +31,7 @@ class TextArea extends Component {
         }
     }
 
-    get value() { return this.isControlledOutside ? this.props.value : this.state.value }
+    get Value() { return this.isControlledOutside ? this.props.value : this.state.value }
 
     /**
      * Auto-resize height of textarea on input.
@@ -101,7 +101,7 @@ class TextArea extends Component {
         }
 
         if (!this.isControlledOutside) {
-            if (this.props.maxLength) {
+            if (this.props.maxLength > 0) {
                 if (e.target.value.length < this.props.maxLength) {
                     this.setState({ value: e.target.value });
                 }
@@ -131,6 +131,10 @@ class TextArea extends Component {
         );
     }
 }
+
+TextArea.defaultProps = {
+    maxLength: -1
+};
 
 TextArea.propTypes = {
     placeholder: PropTypes.string,
