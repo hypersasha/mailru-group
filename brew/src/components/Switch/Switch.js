@@ -26,11 +26,17 @@ class Switch extends Component {
         if (!this.isControlledOutside) {
             this.setState((prevState) => ({
                 isActive: !prevState.isActive
-            }));
+            }), () => {
+                // Call user's callback.
+                if (this.props.onSwitch) {
+                    this.props.onSwitch(this.state.isActive);
+                }
+            });
+            return false;
         }
 
         if (this.props.onSwitch) {
-            this.props.onSwitch();
+            this.props.onSwitch(this.props.isActive);
         }
     }
 
