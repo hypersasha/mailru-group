@@ -126,6 +126,7 @@ div#root {
   font-size: 15px;
   line-height: 20px;
   letter-spacing: -0.24px;
+  font-weight: 400;
 }
 
 h1 {
@@ -133,6 +134,7 @@ h1 {
   color: #000000;
   font-size: 24px;
   line-height: 28px;
+  font-weight: 400;
 }
 
 h2 {
@@ -140,12 +142,14 @@ h2 {
   color: #000000;
   font-size: 20px;
   line-height: 24px;
+  font-weight: 400;
 }
 
 h3 {
   font-family: var(--font-h3);
   font-size: 17px;
   line-height: 22px;
+  font-weight: 400;
 }
 
 h4 {
@@ -187,5 +191,6 @@ p {
 p > b, strong {
   font-family: var(--bold-text);
   font-size: 15px;
+  font-weight: 400;
 }
 

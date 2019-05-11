@@ -26,9 +26,8 @@ module.exports = {
                     }
                 ]
             },
-            // TODO: make rules for fonts.
             {
-                test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+                test: /\.(ttf|otf|eot|svg|woff)$/,
                 use: [
                     {
                         loader: 'file-loader',
