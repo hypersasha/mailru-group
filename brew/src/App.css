@@ -1,64 +1,191 @@
+:root {
+  --font-common: -apple-system, BlinkMacSystemFont,"Noto Sans", Helvetica Neue, Arial;
+  --font-h1: "IBSF Pro Display Bold";
+  --font-h2: "IBSF Pro Display Semibold";
+  --font-h3: "IBSF Pro Text Semibold";
+  --common-text: "IBSF Pro Text Regular", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Arial;
+  --bold-text: "IBSF Pro Text Bold", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Aria;
 
-.App {
-  font-family: 'Noto Sans', sans-serif;
-  font-size: 14px;
+  /* Colors Variables */
+  --subtitle-second-color: #76787A;
+  --caption-color: #909499;
+  --pearl: #FAFAFA;
+  --black-pearl: #0B121A;
+  --hyper-grey: #425263;
+  --grey: #76787A;
+  --hyper-sun: #FFC42F;
+  --hyper-green: #2CB53F;
+  --hyper-blue: #4875E8;
+  --hyper-red: #FF3347;
+}
+
+/* Font Faces */
+
+@font-face {
+  font-family: "IBSF Pro Display Bold";
+  src: url("assets/fonts/SFProDisplay-Bold.eot");
+  src: url('assets/fonts/SFProDisplay-Bold.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: "IBSF Pro Display Semibold";
+  src: url("assets/fonts/SFProDisplay-Semibold.eot");
+  src: url("assets/fonts/SFProDisplay-Semibold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "IBSF Pro Text Regular";
+  src: url("assets/fonts/SF-Pro-Text-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "IBSF Pro Text Semibold";
+  src: url("assets/fonts/SF-Pro-Text-Semibold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "IBSF Pro Text Bold";
+  src: url("assets/fonts/SF-Pro-Text-Bold.otf") format("opentype");
+}
+
+/* Gradients */
+.gradient-orange {
+  background: #ffd540; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #ffd540 0%, #ff8359 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #ffd540 0%,#ff8359 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #ffd540 0%,#ff8359 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd540', endColorstr='#ff8359',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient-green-apple {
+  background: #7fd73c; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #7fd73c 0%, #26b13d 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #7fd73c 0%,#26b13d 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #7fd73c 0%,#26b13d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7fd73c', endColorstr='#26b13d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient-ocean {
+  background: #15eded; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #15eded 0%, #029cf5 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #15eded 0%,#029cf5 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #15eded 0%,#029cf5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#15eded', endColorstr='#029cf5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient-clear-sky {
+  background: #35a1e0; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #35a1e0 0%, #1270e3 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #35a1e0 0%,#1270e3 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #35a1e0 0%,#1270e3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35a1e0', endColorstr='#1270e3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient-royal-blue {
+  background: #658df2; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #658df2 0%, #335ecd 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #658df2 0%,#335ecd 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #658df2 0%,#335ecd 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#658df2', endColorstr='#335ecd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient-indigo {
+  background: #8f6bfd; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #8f6bfd 0%, #5c27fe 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #8f6bfd 0%,#5c27fe 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #8f6bfd 0%,#5c27fe 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8f6bfd', endColorstr='#5c27fe',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient-veronika {
+  background: #ff7c6e; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #ff7c6e 0%, #f5317f 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #ff7c6e 0%,#f5317f 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #ff7c6e 0%,#f5317f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7c6e', endColorstr='#f5317f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient-mustard {
+  background: #ffe324; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #ffe324 0%, #ffb533 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #ffe324 0%,#ffb533 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #ffe324 0%,#ffb533 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe324', endColorstr='#ffb533',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+/* Default Styles */
+
+div#root {
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--common-text);
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+}
+
+h1 {
+  font-family: var(--font-h1);
+  color: #000000;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+h2 {
+  font-family: var(--font-h2);
+  color: #000000;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+h3 {
+  font-family: var(--font-h3);
+  font-size: 17px;
+  line-height: 22px;
+}
+
+h4 {
+  font-family: var(--common-text), "Noto Sans";
+  font-size: 17px;
+  line-height: 22px;
   font-weight: 400;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+h4.subtitle-1 {
+  font-size: 14px;
+  line-height: 18px;
 }
 
-.expo {
-  padding: 10px;
-  background: #e3e3e3;
-  border-radius: 3px;
-  min-height: 120px;
+h4.subtitle-2 {
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--subtitle-second-color);
 }
 
-.docTip {
+h4.caption-1 {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--caption-color);
+}
+
+h4.caption-2 {
   font-size: 12px;
+  line-height: 18px;
+  color: var(--caption-color);
 }
 
-.revenge {
-  background-color: #000000;
-  color: #FFFFFF;
-  width: 250px;
-  padding: 10px;
-  border-radius: 4px;
-  outline: none;
-  -webkit-transition: background-color 0.2s;
-  -moz-transition: background-color 0.2s;
-  -ms-transition: background-color 0.2s;
-  -o-transition: background-color 0.2s;
-  transition: background-color 0.2s;
+p {
+  font-family: var(--common-text), "Noto Sans";
+  font-size: 15px;
+  line-height: 20px;
 }
 
-.revenge:focus {
-  background-color: #282c34;
-  -webkit-transition: background-color 0.2s;
-  -moz-transition: background-color 0.2s;
-  -ms-transition: background-color 0.2s;
-  -o-transition: background-color 0.2s;
-  transition: background-color 0.2s;
+p > b, strong {
+  font-family: var(--bold-text);
+  font-size: 15px;
 }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
