@@ -193,14 +193,25 @@ h4 {
   font-weight: 400;
 }
 
+h4.category {
+  font-family: var(--common-text), "Noto Sans";
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
 h4.subtitle-1 {
   font-size: 14px;
+  font-family: var(--medium-text);
+  text-transform: uppercase;
   line-height: 18px;
 }
 
 h4.subtitle-2 {
   font-size: 14px;
+  font-family: var(--medium-text);
   line-height: 18px;
+  text-transform: uppercase;
   color: var(--subtitle-second-color);
 }
 

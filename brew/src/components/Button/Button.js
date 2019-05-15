@@ -43,7 +43,8 @@ class Button extends Component {
             })}>
                 <div style={style} className={classNames('instant-button', 'gradient-' + theme, `ib-${size}`, {
                     [`flat-${theme}`]: level === 'secondary',
-                    ['disabled']: disabled
+                    ['disabled']: disabled,
+                    ['loading']: loading
                 })}>
                     <div className={classNames('button-content', `ib-${size}`, {
                         ['mustard-color']: theme === 'mustard',

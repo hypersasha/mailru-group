@@ -11,7 +11,7 @@
 .instant-button {
   display: inline-block;
   box-sizing: border-box;
-  padding: 8px 16px;
+  padding: 7px 12px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@
   border-radius: 3px;
   overflow: hidden;
   margin: 8px 0;
-
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 
   &.ib-large {
     display: flex;
@@ -28,12 +28,12 @@
 
   &.ib-medium {
     display: inline-block;
-    padding: 8px 16px;
+    padding: 6px 11px;
     border-radius: 10000px;
   }
 
   &.ib-small {
-    padding: 5px 16px;
+    padding: 5px 12px;
     border-radius: 10000px;
   }
 
@@ -62,10 +62,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     font-size: 14px;
     font-family: var(--bold-text);
     color: #FFFFFF;
@@ -78,6 +74,11 @@
     -ms-transition: opacity 0.2s;
     -o-transition: opacity 0.2s;
     transition: opacity 0.2s;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
     &.invisible {
       opacity: 0;
@@ -100,11 +101,11 @@
     }
 
     &.ib-medium {
-      font-size: 15px;
+      font-size: 14px;
     }
 
     &.ib-small {
-      font-size: 14px;
+      font-size: 12px;
       .after { display: none; }
       .before { display: none; }
     }
@@ -161,7 +162,7 @@
     transition: background-color 0.15s ease-in;
   }
 
-  &:hover {
+  &:hover:not(.loading) {
     cursor: pointer;
     &::after {
       background-color: rgba(0,0,0,0.1);
@@ -170,12 +171,12 @@
 
   &:active {
     &::after {
-      background-color: rgba(255,255,255,0.1);
+      background-color: rgba(255,255,255,0.1) !important;
     }
   }
 
 
-  /* Portrait and Landscape */
+  /* Mobile devices. Portrait and Landscape */
   @media only screen
   and (min-device-width: 320px)
   and (max-device-width: 812px)
@@ -184,21 +185,39 @@
     padding: 16px;
     border-radius: 10px;
 
+    &:focus-within {
+      background: transparent;
+    }
+
     &:hover {
       &::after {
-        background-color: rgba(0,0,0,0);
+        background-color: transparent;
+      }
+    }
+
+    &:visited {
+      &::after {
+        background-color: transparent;
       }
     }
 
     &:active {
       &::after {
-        background-color: rgba(255,255,255,0);
+        background-color: transparent;
       }
     }
 
     .button-content {
       font-size: 17px;
       font-family: var(--medium-text);
+
+      &.ib-medium {
+        font-size: 15px;
+      }
+
+      &.ib-small {
+        font-size: 14px;
+      }
     }
 
     &.ib-medium {

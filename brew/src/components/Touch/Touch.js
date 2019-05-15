@@ -30,17 +30,14 @@ export default class Touch extends Component {
     subscribe() {
         this.container.current.addEventListener(events[0], this.onStart);
         this.container.current.addEventListener(events[2], this.onStop);
-        this.container.current.addEventListener(events[3], this.onCancel);
     }
 
     unsubscribe() {
         this.container.current.removeEventListener(events[0], this.onStart);
         this.container.current.removeEventListener(events[2], this.onStop);
-        this.container.current.removeEventListener(events[3], this.onCancel);
     }
 
     onStart(e) {
-
         if (!this.props.disabled) {
             if (this.props.onStart) {
                 this.props.onStart();
@@ -67,8 +64,6 @@ export default class Touch extends Component {
     }
 
     onCancel(e) {
-        console.log('cancelled');
-        alert('!');
     }
 
     clearAnimation() {
