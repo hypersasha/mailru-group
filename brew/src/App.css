@@ -5,6 +5,7 @@
   --font-h3: "IBSF Pro Text Semibold";
   --common-text: "IBSF Pro Text Regular", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Arial;
   --bold-text: "IBSF Pro Text Bold", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Aria;
+  --medium-text: "IBSF Pro Text Medium", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Aria;
 
   /* Colors Variables */
   --subtitle-second-color: #76787A;
@@ -17,6 +18,7 @@
   --hyper-green: #2CB53F;
   --hyper-blue: #4875E8;
   --hyper-red: #FF3347;
+  --mustard-text-color: #6F3705;
 }
 
 /* Font Faces */
@@ -46,6 +48,11 @@
 @font-face {
   font-family: "IBSF Pro Text Bold";
   src: url("assets/fonts/SF-Pro-Text-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "IBSF Pro Text Medium";
+  src: url("assets/fonts/SF-Pro-Text-Medium.otf") format("opentype");
 }
 
 /* Gradients */
@@ -112,6 +119,33 @@
   background: linear-gradient(135deg, #ffe324 0%,#ffb533 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe324', endColorstr='#ffb533',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
+
+.flat-green-apple {
+  background: #91E59A;
+}
+
+.flat-clear-sky {
+  background: #CDE7FF;
+}
+
+.flat-indigo {
+  background: #F0D0FF;
+}
+
+.flat-mustard {
+  background: #FFDA7E;
+}
+
+.flat-veronika {
+  background: #FEBAC1;
+}
+
+.flat-royal-blue {
+  background: #CDDBFF;
+}
+
+
+
 
 /* Default Styles */
 

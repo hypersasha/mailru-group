@@ -1,0 +1,25 @@
+
+.tappable-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.tappable {
+  position: relative;
+
+  &.tapped {
+    animation: frostStartAnim 400ms ease forwards;
+  }
+}
+
+@keyframes frostStartAnim {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
