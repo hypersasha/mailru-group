@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
-import {platform, IOS} from './lib/platform';
-
-const osname = platform();
-
-import './App.css'; // This is IMPORTANT import.
+import {platform, IOS, iPhone} from './lib/platform';
 import './test.less'
 import Button from "./components/Button/Button";
 import Title from "./components/Title/Title";
-import Input from "./components/Input/Input";
-import Switch from "./components/Switch/Switch";
-import TextArea from "./components/TextArea/TextArea";
+import Touch from "./components/Touch/Touch";
+import StatusBar from "./components/StatusBar/StatusBar";
 
 class App extends Component {
 
@@ -58,8 +53,6 @@ class App extends Component {
                         замечательная зеленая кнопка.
                     </p>
                     <Button
-                        align={"center"}
-                        disabled={false}
                         style={{margin: "0 12px"}}
                         onClick={this.handlePress}
                         before={<i className="material-icons">accessible_forward</i>}

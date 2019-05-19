@@ -28,6 +28,20 @@
   display: inline-block; margin: 0 10px;
 }
 
+.translucent-alert {
+  position: fixed;
+  width: 200px;
+  height: auto;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  margin-left: -100px;
+  left: 50%;
+  top: 50%;
+  margin-top: -50px;
+  -webkit-backdrop-filter:blur(20px) saturate(150%) brightness(100%);
+}
+
 @keyframes Pulse {
   0% { background: #f44336 }
   10% { background: #e91e63 }

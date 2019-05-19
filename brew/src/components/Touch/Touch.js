@@ -23,17 +23,19 @@ export default class Touch extends Component {
         this.onStart = this.onStart.bind(this);
         this.onStop = this.onStop.bind(this);
         this.onCancel = this.onCancel.bind(this);
-        this.clearAnimation = this.clearAnimation.bind(this);
+        this.onMove = this.onMove.bind(this);
 
     }
 
     subscribe() {
         this.container.current.addEventListener(events[0], this.onStart);
+        this.container.current.addEventListener(events[1], this.onMove);
         this.container.current.addEventListener(events[2], this.onStop);
     }
 
     unsubscribe() {
         this.container.current.removeEventListener(events[0], this.onStart);
+        this.container.current.removeEventListener(events[1], this.onMove);
         this.container.current.removeEventListener(events[2], this.onStop);
     }
 
@@ -44,9 +46,8 @@ export default class Touch extends Component {
             }
 
             this.setState({
-                pressed: true,
-                released: false
-            })
+                pressed: true
+            });
         }
     }
 
@@ -55,35 +56,23 @@ export default class Touch extends Component {
             if (this.props.onEnd) {
                 this.props.onEnd();
             }
-            this.setState({
-                released: true
-            }, () => {
-                this.clearAnimation();
-            })
+
+            setTimeout(() => {
+                this.setState({
+                    pressed: false
+                });
+            }, CLEAR_DELAY)
         }
     }
 
     onCancel(e) {
     }
 
-    clearAnimation() {
-        if (!this.clearAnimInterval && this.state.released && touchEnabled) {
-            this.clearAnimInterval = setTimeout(() => {
-                this.setState({
-                    pressed: false,
-                    released: true
-                }, () => {
-                    this.clearAnimInterval = null;
-                });
-            }, CLEAR_DELAY);
-        } else {
-            if (!touchEnabled) {
-                this.setState({
-                    pressed: false,
-                    released: true
-                });
-            }
-        }
+    onMove(e) {
+        e.stopPropagation();
+        this.setState({
+            pressed: false
+        });
     }
 
     componentDidMount() {
@@ -101,7 +90,6 @@ export default class Touch extends Component {
             <div className={"tappable-container"}>
                 <div {...restProps}
                      className={classNames(className, 'tappable', {['tapped']: pressed})}
-                     onAnimationEnd={this.clearAnimation}
                      ref={this.container}
                      style={{overflow: "visible", position: "relative"}}>
                     {this.props.children}

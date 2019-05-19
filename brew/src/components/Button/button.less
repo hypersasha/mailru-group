@@ -67,7 +67,6 @@
     color: #FFFFFF;
     letter-spacing: -0.34px;
     text-align: center;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.15);
     z-index: 1;
     -webkit-transition: opacity 0.2s;
     -moz-transition: opacity 0.2s;
@@ -89,7 +88,6 @@
       padding: 0;
       display: flex;
       align-items: center;
-      text-shadow: 0 1px 0 rgba(0,0,0,0.15);
 
       &.second-level {
         text-shadow: none;
@@ -112,7 +110,6 @@
 
     &.mustard-color {
       color: var(--mustard-text-color);
-      text-shadow: 0 1px 0 rgba(255,255,255,0.15);
     }
 
     /* Secondary colors for flat buttons. */
@@ -154,7 +151,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0);
+    background: rgba(0,0,0,0);
     -webkit-transition: background-color 0.15s ease-in;
     -moz-transition: background-color 0.15s ease-in;
     -ms-transition: background-color 0.15s ease-in;
@@ -165,7 +162,32 @@
   &:hover:not(.loading) {
     cursor: pointer;
     &::after {
-      background-color: rgba(0,0,0,0.1);
+      background: rgba(0,0,0,0.1);
+
+
+      /* iPhone 5c, 5s */
+      @media only screen
+      and (min-device-width: 320px)
+      and (max-device-width: 568px)
+      and (-webkit-min-device-pixel-ratio: 2) {
+        background: rgba(0,0,0,0);
+      }
+
+      @media only screen
+      and (min-device-width: 414px)
+      and (max-device-width: 736px)
+      and (-webkit-min-device-pixel-ratio: 3) {
+        background: rgba(0,0,0,0);
+      }
+
+      /* iPhone X */
+      @media only screen
+      and (min-device-width: 375px)
+      and (max-device-width: 812px)
+      and (-webkit-min-device-pixel-ratio: 3) {
+        background: rgba(0,0,0,0);
+      }
+
     }
   }
 
@@ -179,7 +201,7 @@
   /* Mobile devices. Portrait and Landscape */
   @media only screen
   and (min-device-width: 320px)
-  and (max-device-width: 812px)
+  and (max-device-width: 568px)
   and (-webkit-min-device-pixel-ratio: 2) {
 
     padding: 16px;
@@ -191,24 +213,24 @@
 
     &:hover {
       &::after {
-        background-color: transparent;
+        background: rgba(0,0,0,0);
       }
     }
 
     &:visited {
       &::after {
-        background-color: transparent;
+        background: rgba(0,0,0,0);
       }
     }
 
     &:active {
       &::after {
-        background-color: transparent;
+        background: rgba(0,0,0,0);
       }
     }
 
     .button-content {
-      font-size: 17px;
+      font-size: 18px;
       font-family: var(--medium-text);
 
       &.ib-medium {

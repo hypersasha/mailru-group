@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './App.css'; // This is IMPORTANT import.
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import connect from '@vkontakte/vkui-connect';

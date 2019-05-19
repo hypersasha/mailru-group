@@ -14,3 +14,11 @@ export function platform (useragent) {
 
     return platformName;
 }
+
+export function iPhone() {
+    if (!ua) {
+        ua = (navigator && navigator.userAgent) || '';
+    }
+
+    return /iphone/i.test(ua);
+}
