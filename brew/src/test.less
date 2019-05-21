@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: center;
   max-width: 80%;
-  border: 2px solid rgba(255,255,255,0.4);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   border-radius: 4px;
 
   div {
@@ -11,7 +11,7 @@
     padding: 10px;
 
     &:first-child {
-      border-right: 2px solid rgba(255,255,255,0.4);
+      border-right: 2px solid rgba(255, 255, 255, 0.4);
     }
   }
 }
@@ -25,7 +25,8 @@
   width: 30px;
   height: 30px;
   border-radius: 6px;
-  display: inline-block; margin: 0 10px;
+  display: inline-block;
+  margin: 0 10px;
 }
 
 .translucent-alert {
@@ -39,19 +40,82 @@
   left: 50%;
   top: 50%;
   margin-top: -50px;
-  -webkit-backdrop-filter:blur(20px) saturate(150%) brightness(100%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%) brightness(100%);
 }
 
 @keyframes Pulse {
-  0% { background: #f44336 }
-  10% { background: #e91e63 }
-  20% { background: #9c27b0 }
-  30% { background: #673ab7 }
-  40% { background: #2196f3 }
-  50% { background: #00bcd4 }
-  60% { background: #4caf50 }
-  70% { background: #ffeb3b }
-  80% { background: #ff9800 }
-  90% { background: #ff5722 }
-  100% { background: #f44336 }
+  0% {
+    background: #f44336
+  }
+  10% {
+    background: #e91e63
+  }
+  20% {
+    background: #9c27b0
+  }
+  30% {
+    background: #673ab7
+  }
+  40% {
+    background: #2196f3
+  }
+  50% {
+    background: #00bcd4
+  }
+  60% {
+    background: #4caf50
+  }
+  70% {
+    background: #ffeb3b
+  }
+  80% {
+    background: #ff9800
+  }
+  90% {
+    background: #ff5722
+  }
+  100% {
+    background: #f44336
+  }
+}
+
+
+.welcome-layout {
+  background: #F3F3F3;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  &--inner {
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    box-shadow: 0 3px 10px #EAEAEA;
+    padding: 20px !important;
+
+    @media only screen
+    and (min-device-width: 320px)
+    and (max-device-width: 812px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+      padding: 24px 12px !important;
+      border-left: none;
+      border-right: none;
+    }
+  }
+
+  &.dark-theme {
+    .welcome-layout--inner {
+      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+      border-color: black;
+    }
+  }
+
+  @media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    padding: 0 !important;
+  }
 }

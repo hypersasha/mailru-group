@@ -9,6 +9,10 @@ body {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
+body[data-scheme="dark"] {
+  background: var(--black-pearl);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

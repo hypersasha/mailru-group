@@ -1,0 +1,60 @@
+
+.ib-layout {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 40px;
+
+  -webkit-transition: background 0.15s ease;
+  -moz-transition: background 0.15s ease;
+  -ms-transition: background 0.15s ease;
+  -o-transition: background 0.15s ease;
+  transition: background 0.15s ease;
+
+  .ib-layout {
+    padding: 0;
+  }
+
+  &.dark-theme {
+    background: var(--black-pearl);
+
+    .ib-layout {
+      background: var(--hyper-grey);
+    }
+
+    p {
+      color: #FFFFFF;
+    }
+
+    /* Title */
+    .ib-title {
+      h1,h2,h3,h4 {
+        color: #FFFFFF;
+      }
+    }
+
+    /* Switch */
+    .brew-switch {
+      &--label {
+        color: #FFFFFF;
+      }
+
+      &--button {
+        background-color: var(--black-pearl);
+        &:after {
+          box-shadow: 0 1px 3px 0 rgba(0,0,0,0.7);
+        }
+      }
+    }
+  }
+
+  @media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    padding: 6px 12px;
+  }
+
+}

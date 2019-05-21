@@ -23,3 +23,4 @@
 | loading | bool | Показывает индикатор загрузки внутри кнопки. Событие onClick для кнопки отключается. Default: *false*. |
 | size | string | Устанавливает размер кнопки. Допустимые значения: *small*, *medium*, *large* (default). |
 | theme | string | Задает цвет кнопки согласно названиям градиентов из Instant Brew Styleguide. **Допустимые значения:** *green-apple* (default), *royal-blue*, *veronika*, *mustard*, *clear-sky*, *indigo*.|
+| noWide | bool | Установить ширину кнопки согласно её содержимому. Эта опция доступна только для кнопок размером **large**. |
