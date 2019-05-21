@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 0;
   box-sizing: border-box;
 
   &--label {
@@ -16,7 +16,7 @@
   }
 
   &--button {
-    width: 50px;
+    width: 44px;
     height: 26px;
     border-radius: 23px;
     background-color: #D9D9D9;
@@ -25,25 +25,43 @@
     justify-content: flex-start;
     align-items: center;
     cursor: pointer;
-    -webkit-transition: background-color 0.1s ease-in;
-    -moz-transition: background-color 0.1s ease-in;
-    -ms-transition: background-color 0.1s ease-in;
-    -o-transition: background-color 0.1s ease-in;
-    transition: background-color 0.1s ease-in;
+    padding: 0;
+    -webkit-transition: background-color 0.2s ease-in;
+    -moz-transition: background-color 0.2s ease-in;
+    -ms-transition: background-color 0.2s ease-in;
+    -o-transition: background-color 0.2s ease-in;
+    transition: background-color 0.2s ease-in;
+
+    @media only screen
+    and (min-device-width: 320px)
+    and (max-device-width: 812px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+      width: 50px;
+      height: 32px;
+    }
 
     &:after {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: #FFFFFF;
       box-shadow: 0 1px 3px 0 #A9A9A9;
       content: "";
-      margin-left: 3px;
-      -webkit-transition: margin-left 0.1s ease-in;
-      -moz-transition: margin-left 0.1s ease-in;
-      -ms-transition: margin-left 0.1s ease-in;
-      -o-transition: margin-left 0.1s ease-in;
-      transition: margin-left 0.1s ease-in;
+      margin-left: 2px;
+      -webkit-transition: margin-left 0.15s ease-in;
+      -moz-transition: margin-left 0.15s ease-in;
+      -ms-transition: margin-left 0.15s ease-in;
+      -o-transition: margin-left 0.15s ease-in;
+      transition: margin-left 0.15s ease-in;
+
+      @media only screen
+      and (min-device-width: 320px)
+      and (max-device-width: 812px)
+      and (-webkit-min-device-pixel-ratio: 2) {
+        width: 30px;
+        height: 30px;
+        margin-left: 1px;
+      }
     }
   }
 
@@ -52,8 +70,20 @@
       background-color: #59D022;
       
       &:after {
-        margin-left: 27px;
-        box-shadow: 0 1px 3px 0 #247101;
+        margin-left: 20px;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.3);
+      }
+    }
+
+    @media only screen
+    and (min-device-width: 320px)
+    and (max-device-width: 812px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+      .brew-switch--button {
+
+        &:after {
+          margin-left: 19px;
+        }
       }
     }
   }

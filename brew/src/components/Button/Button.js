@@ -27,20 +27,27 @@ class Button extends Component {
 
     render() {
 
-        const {style,
+        const {
+            style,
             theme,
             level,
             size,
             loading,
             disabled,
             onClick,
-            align, ...restProps} = this.props;
+            noWide,
+            align, ...restProps
+        } = this.props;
 
         return (
-            <Touch {...restProps} disabled={loading || disabled} onClick={this.handleClick} className={classNames('ib-tappable', `ib-${size}`, {
-                ['ib-align-center']: align === 'center',
-                ['ib-align-right']: align === 'right'
-            })}>
+            <Touch {...restProps}
+                   disabled={loading || disabled}
+                   onClick={this.handleClick}
+                   className={classNames('ib-tappable', `ib-${size}`, {
+                       ['ib-align-center']: align === 'center',
+                       ['ib-align-right']: align === 'right',
+                       ['no-wide']: noWide
+                   })}>
                 <div style={style} className={classNames('instant-button', 'gradient-' + theme, `ib-${size}`, {
                     [`flat-${theme}`]: level === 'secondary',
                     ['disabled']: disabled,
@@ -59,7 +66,7 @@ class Button extends Component {
                             {this.props.after}
                         </div>
                     </div>
-                    {this.props.loading && <Dots theme={theme === 'mustard' ? 'dark' : 'light'} />}
+                    {this.props.loading && <Dots theme={theme === 'mustard' ? 'dark' : 'light'}/>}
                 </div>
             </Touch>
         );
@@ -74,7 +81,8 @@ Button.propTypes = {
     before: PropTypes.any,
     level: PropTypes.oneOf(['primary', 'secondary']),
     disabled: PropTypes.bool,
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    noWide: PropTypes.bool
 };
 
 Button.defaultProps = {
@@ -83,7 +91,8 @@ Button.defaultProps = {
     theme: 'green-apple',
     size: 'large',
     disabled: false,
-    loading: false
+    loading: false,
+    noWide: false
 };
 
 export default Button;
