@@ -6,6 +6,8 @@
   --common-text: "IBSF Pro Text Regular", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Arial;
   --bold-text: "IBSF Pro Text Bold", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Aria;
   --medium-text: "IBSF Pro Text Medium", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Aria;
+  --common-text-size: 14px;
+  --common-text-size-mobile: 15px;
 
   /* Colors Variables */
   --subtitle-second-color: #76787A;
@@ -235,7 +237,7 @@ p {
 
 p > b, strong {
   font-family: var(--bold-text);
-  font-size: 15px;
+  font-size: inherit;
   font-weight: 400;
 }
 

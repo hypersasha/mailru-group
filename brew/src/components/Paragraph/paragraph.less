@@ -1,0 +1,52 @@
+.ib-paragraph {
+    max-width: 720px;
+    font-family: var(--common-text);
+    font-size: var(--common-text-size);
+    line-height: 20px;
+    letter-spacing: -0.24px;
+
+    /* iPhone 5c, 5s */
+    @media only screen
+    and (min-device-width: 320px)
+    and (max-device-width: 568px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+        font-size: var(--common-text-size-mobile);
+    }
+
+    @media only screen
+    and (min-device-width: 414px)
+    and (max-device-width: 736px)
+    and (-webkit-min-device-pixel-ratio: 3) {
+        font-size: var(--common-text-size-mobile);
+    }
+
+    /* iPhone X */
+    @media only screen
+    and (min-device-width: 375px)
+    and (max-device-width: 812px)
+    and (-webkit-min-device-pixel-ratio: 3) {
+        font-size: var(--common-text-size-mobile);
+    }
+}
+
+.ib-paragraph.center {
+    text-align: center;
+}
+
+.ib-paragraph.right {
+    text-align: right;
+}
+
+.ib-paragraph.wide {
+    max-width: none;
+}
+
+.ib-paragraph.big {
+    font-size: 16px;
+    line-height: 21px;
+}
+
+.ib-paragraph.small {
+    font-size: 13px;
+    line-height: 19px;
+}
