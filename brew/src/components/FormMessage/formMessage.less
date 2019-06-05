@@ -1,5 +1,6 @@
 .ib-formMessage {
     /* Position settings */
+    max-width: 720px;
     padding: 7px 12px;
     position: relative;
     overflow: hidden;
@@ -13,12 +14,13 @@
     font-size: 13px;
     line-height: 15px;
     font-family: var(--common-text);
+    color: #425263;
     letter-spacing: -0.208px;
     text-align: center;
 
     /* Background and border settings */
-    background: rgba(128, 128, 128, 0.15);
-    border: 1px solid #0B121A;
+    background: #E5E9F6;
+    border: 1px solid #9CA9B6;
     box-sizing: border-box;
     border-radius: 6px;
 
@@ -26,7 +28,7 @@
     @media only screen
     and (min-device-width: 320px)
     and (max-device-width: 568px)
-    and (-webkit-min-device-pixel-ratio: 2) {
+    and (-webkit-min-device-pixel-ratio: 3) {
         font-size: var(--common-text-size-mobile);
     }
 
@@ -44,36 +46,20 @@
     and (-webkit-min-device-pixel-ratio: 3) {
         font-size: var(--common-text-size-mobile);
     }
-}
 
     &.error {
-    /* Text settings */
-    font-size: 13px;
-    line-height: 15px;
-    font-family: var(--common-text);
-    color: #FF3347;
-    letter-spacing: -0.208px;
-    text-align: center;
+        /* Text settings */
+        font-size: 13px;
+        line-height: 15px;
+        font-family: var(--common-text);
+        color: #FF3347;
+        letter-spacing: -0.208px;
+        text-align: center;
 
-    /* Background and border settings */
-    background: rgba(255, 51, 71, 0.15);
-    border: 1px solid #FF3347;
-    box-sizing: border-box;
-    border-radius: 6px;
-}
-
-    &.info {
-    /* Text settings */
-    font-size: 13px;
-    line-height: 15px;
-    font-family: var(--common-text);
-    color: #425263;
-    letter-spacing: -0.208px;
-    text-align: center;
-
-    /* Background and border settings */
-    background: #E5E9F6;
-    border: 1px solid #9CA9B6;
-    box-sizing: border-box;
-    border-radius: 6px;
+        /* Background and border settings */
+        background: rgba(255, 51, 71, 0.15);
+        border: 1px solid #FF3347;
+        box-sizing: border-box;
+        border-radius: 6px;
+    }
 }

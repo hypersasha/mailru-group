@@ -6,11 +6,10 @@ import "./formMessage.less";
 
 class FormMessage extends Component {
     render() {
-        const { children, error, info, ...restProps } = this.props;
+        const { children, error, ...restProps } = this.props;
         return (
             <p className={classNames("ib-formMessage", {
                 ['error']: error,
-                ['info']: info
             })}>
                 {children}
             </p>
@@ -19,13 +18,11 @@ class FormMessage extends Component {
 }
 
 FormMessage.propTypes = {
-    error: PropTypes.bool,
-    info: PropTypes.bool
+    error: PropTypes.bool
 };
 
 FormMessage.defaultProps = {
     error: false,
-    info: false
 };
 
 export default FormMessage;

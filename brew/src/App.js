@@ -7,7 +7,6 @@ import Switch from "./components/Switch/Switch";
 
 // Import your styles after all components!
 import './test.less'
-import FormMessage from "./components/FormMessage/FormMessage";
 import Paragraph from "./components/Paragraph/Paragraph";
 
 class App extends Component {
