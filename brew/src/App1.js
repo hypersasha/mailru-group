@@ -15,7 +15,7 @@ class App extends Component {
         super(props);
 
         this.state = {
-            darkTheme: false
+            darkTheme: true
         };
 
         this.changeTheme = this.changeTheme.bind(this);
