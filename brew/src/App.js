@@ -7,6 +7,7 @@ import Switch from "./components/Switch/Switch";
 
 // Import your styles after all components!
 import './test.less'
+import Paragraph from "./components/Paragraph/Paragraph";
 
 class App extends Component {
 
@@ -34,12 +35,12 @@ class App extends Component {
                         <Title
                             before={<Avatar size={64} image={'https://cdn.dribbble.com/users/85713/screenshots/3775213/herbal_dribble.gif'} />}
                         >Заварилось</Title>
-                        <p>
+                        <Paragraph>
                             Добро пожаловать в Instant Brew! Если Вы видите эту демо-страницу, значит, проект успешно
                             собрался и всё заварилось. Приступайте к работе с редактирования файла <b>App.js</b> и
                             сделайте это приложение лучшим в мире.
-                        </p>
-                        <Switch label={"Темная тема"} isActive={this.state.darkTheme} onSwitch={this.changeTheme} />
+                        </Paragraph>
+                     <Switch label={"Темная тема"} isActive={this.state.darkTheme} onSwitch={this.changeTheme} />
                     </Layout>
                 </Layout>
             </div>
