@@ -344,6 +344,7 @@ p > b, strong {
 }
 .ib-layout.dark-theme .brew-switch--button {
   background-color: var(--black-pearl);
+  border: 2px solid var(--black-pearl);
 }
 .ib-layout.dark-theme .brew-switch--button:after {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.7);
@@ -382,7 +383,7 @@ p > b, strong {
   height: 23px;
   border-radius: 23px;
   background-color: #FFFFFF;
-  border: 2px solid #D9D9D9;
+  border: 2px solid #E1E3E6;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
