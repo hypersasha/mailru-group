@@ -10,7 +10,9 @@ module.exports = merge(common, {
             '.vk.com'
         ],
         host: '0.0.0.0',
-        port: 10880
+        port: 10880,
+        publicPath: '/',
+        historyApiFallback: true
     },
     module: {
         rules: [

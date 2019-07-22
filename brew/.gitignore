@@ -18,6 +18,7 @@
 !/dist/index.html
 !/dist/favicon.ico
 !/dist/manifest.json
+!/dist/404.html
 
 # ts build server
 /ibds/dist/**/*
