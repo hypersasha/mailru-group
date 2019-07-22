@@ -45,34 +45,34 @@ code {
 
 @font-face {
   font-family: "IBSF Pro Display Bold";
-  src: url(/assets/fonts/SFProDisplay-Bold.eot);
-  src: url(/assets/fonts/SFProDisplay-Bold.ttf) format("truetype");
+  src: url(assets/fonts/SFProDisplay-Bold.eot);
+  src: url(assets/fonts/SFProDisplay-Bold.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "IBSF Pro Display Semibold";
-  src: url(/assets/fonts/SFProDisplay-Semibold.eot);
-  src: url(/assets/fonts/SFProDisplay-Semibold.ttf) format("truetype");
+  src: url(assets/fonts/SFProDisplay-Semibold.eot);
+  src: url(assets/fonts/SFProDisplay-Semibold.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "IBSF Pro Text Regular";
-  src: url(/assets/fonts/SF-Pro-Text-Regular.otf) format("opentype");
+  src: url(assets/fonts/SF-Pro-Text-Regular.otf) format("opentype");
 }
 
 @font-face {
   font-family: "IBSF Pro Text Semibold";
-  src: url(/assets/fonts/SF-Pro-Text-Semibold.otf) format("opentype");
+  src: url(assets/fonts/SF-Pro-Text-Semibold.otf) format("opentype");
 }
 
 @font-face {
   font-family: "IBSF Pro Text Bold";
-  src: url(/assets/fonts/SF-Pro-Text-Bold.otf) format("opentype");
+  src: url(assets/fonts/SF-Pro-Text-Bold.otf) format("opentype");
 }
 
 @font-face {
   font-family: "IBSF Pro Text Medium";
-  src: url(/assets/fonts/SF-Pro-Text-Medium.otf) format("opentype");
+  src: url(assets/fonts/SF-Pro-Text-Medium.otf) format("opentype");
 }
 
 /* Gradients */
