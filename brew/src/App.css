@@ -3,9 +3,10 @@
   --font-h1: "IBSF Pro Display Bold";
   --font-h2: "IBSF Pro Display Semibold";
   --font-h3: "IBSF Pro Text Semibold";
-  --common-text: "IBSF Pro Text Regular", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Arial;
-  --bold-text: "IBSF Pro Text Bold", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Aria;
-  --medium-text: "IBSF Pro Text Medium", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Aria;
+  --common-text: "SF Pro Text", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Arial;
+  --display-text: "SF Pro Display", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Arial;
+  --bold-text: "SF Pro Text", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Aria;
+  --medium-text: "SF Pro Text", BlinkMacSystemFont, "Noto Sans", Helvetica Neue, Aria;
   --common-text-size: 14px;
   --common-text-size-mobile: 15px;
 
@@ -24,6 +25,46 @@
 }
 
 /* Font Faces */
+
+@font-face {
+  font-family: "SF Pro Display";
+  font-weight: 600;
+  src: url("assets/fonts/SFProDisplay-Semibold.eot");
+  src: url("assets/fonts/SFProDisplay-Semibold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-weight: 700;
+  src: url("assets/fonts/SFProDisplay-Bold.eot");
+  src: url('assets/fonts/SFProDisplay-Bold.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  font-weight: 400;
+  src: url("assets/fonts/SF-Pro-Text-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  font-weight: 500;
+  src: url("assets/fonts/SF-Pro-Text-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  font-weight: 600;
+  src: url("assets/fonts/SF-Pro-Text-Semibold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "SF Pro Text";
+  font-weight: 700;
+  src: url("assets/fonts/SF-Pro-Text-Bold.otf") format("opentype");
+}
+
+/* DEPRECATED in the next update. */
 
 @font-face {
   font-family: "IBSF Pro Display Bold";
@@ -166,52 +207,54 @@ div#root {
 }
 
 h1 {
-  font-family: var(--font-h1);
+  font-family: var(--display-text);
   color: #000000;
   font-size: 24px;
   line-height: 28px;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 h2 {
-  font-family: var(--font-h2);
+  font-family: var(--common-text);
   color: #000000;
   font-size: 20px;
   line-height: 24px;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 h3 {
-  font-family: var(--font-h3);
+  font-family: var(--common-text);
   font-size: 17px;
   line-height: 22px;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 h4 {
-  font-family: var(--common-text), "Noto Sans";
+  font-family: var(--common-text);
   font-size: 17px;
   line-height: 22px;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 h4.category {
   font-family: var(--common-text), "Noto Sans";
   font-size: 16px;
   line-height: 20px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 h4.subtitle-1 {
   font-size: 14px;
-  font-family: var(--medium-text);
+  font-family: var(--common-text);
   text-transform: uppercase;
   line-height: 18px;
+  font-weight: 500;
 }
 
 h4.subtitle-2 {
   font-size: 14px;
-  font-family: var(--medium-text);
+  font-family: var(--common-text);
+  font-weight: 500;
   line-height: 18px;
   text-transform: uppercase;
   color: var(--subtitle-second-color);
@@ -220,12 +263,16 @@ h4.subtitle-2 {
 h4.caption-1 {
   font-size: 13px;
   line-height: 18px;
+  font-family: var(--common-text);
+  font-weight: 600;
   color: var(--caption-color);
 }
 
 h4.caption-2 {
   font-size: 12px;
   line-height: 18px;
+  font-family: var(--common-text);
+  font-weight: 600;
   color: var(--caption-color);
 }
 
@@ -233,11 +280,12 @@ p {
   font-family: var(--common-text), "Noto Sans";
   font-size: 15px;
   line-height: 20px;
+  font-weight: 400;
 }
 
 p > b, strong {
   font-family: var(--bold-text);
   font-size: inherit;
-  font-weight: 400;
+  font-weight: 700;
 }
 
