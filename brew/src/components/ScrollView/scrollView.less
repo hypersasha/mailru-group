@@ -1,0 +1,41 @@
+
+.ScrollView {
+  width: auto;
+  height: auto;
+  overflow: auto;
+  max-height: 200px;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+
+  .scrollContainer {
+    div.scrollItem {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.horizontal {
+    padding-bottom: 10px;
+
+    .scrollContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      flex-shrink: 0;
+      flex-basis: 0;
+      flex-grow: 1;
+
+      div.scrollItem {
+        margin-bottom: 0;
+        margin-left: 10px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
