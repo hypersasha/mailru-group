@@ -1,7 +1,4 @@
-import enumerate = Reflect.enumerate;
-
 const request = require('request');
-// import * as Promise from 'bluebird';
 const Promise = require('bluebird');
 import {IPerson} from "./IPerson";
 
@@ -12,10 +9,10 @@ interface IOptions {
     bigTextParagraphs: number
     mediumTextSentences: number,
     smallTextSentences: number,
-    smallTextNumber: number,
     pictureWidth: number,
     pictureHeight: number
 }
+const MaxNumbersOfTry = 4;
 
 export class PersonGenerator {
     /**
@@ -29,7 +26,8 @@ export class PersonGenerator {
      *                                          Total number of sentences should not exceed 500
      * @param options.smallTextSentences:number - number of sentences in random text for one person. (Text of comment in article)
      *                                          Total number of sentences should not exceed 500
-     * @param options.smallTextNumber:number - number of small text
+     * @param options.pictureWidth:number - width of generated image
+     * @param options.pictureHeight:number - height of generated image
      *
      * @returns array:IPerson[]
      */
@@ -41,7 +39,8 @@ export class PersonGenerator {
             if (options.rndNumMax < options.rndNumMin) options.rndNumMax = options.rndNumMin;
             if (options.bigTextParagraphs < 1) options.bigTextParagraphs = 1;
 
-            return Promise.mapSeries(new Array(options.count), () => PersonGenerator._getPersonInformation(options.rndNumMin, options.rndNumMax))
+            console.log('Getting person information...');
+            return Promise.mapSeries(new Array(options.count), () => PersonGenerator._getPersonInformation(0, options.rndNumMin, options.rndNumMax))
                 .then((allPersons: IPerson[]) => {
                     let genders = [
                         {
@@ -65,15 +64,16 @@ export class PersonGenerator {
                         }
                     });
 
-                    return Promise.mapSeries(genders, (gender: any) => PersonGenerator._getRightNameAndPhoto(gender))
+                    console.log('Getting photo and russian name...');
+                    return Promise.mapSeries(genders, (gender: any) => PersonGenerator._getRightNameAndPhoto(0, gender))
                         .then((informations: any) => {
                             allPersons = PersonGenerator._getRightNameAndPhoto_sort(male, female, informations);
 
-                            let mediumTextSentencesMultiplier = 3;
+                            let mediumTextSentencesMultiplier = 1;
 
-                            // TODO: Gulp ругается если поставить let. Почему?
+                            // TODO: Gulp ругается если поставить let и сделать объект. Почему?
                             enum seriesText {
-                                small = options.smallTextNumber * options.smallTextSentences * options.count,
+                                small = options.smallTextSentences * options.count,
                                 medium = options.mediumTextSentences * options.count * mediumTextSentencesMultiplier,
                                 big = options.bigTextParagraphs * options.count
                             }
@@ -82,7 +82,7 @@ export class PersonGenerator {
                                 .then((result: any) => {
                                     let texts = Object.assign(result[0], result[1], result[2]);
                                     Object.keys(allPersons).map(index => {
-                                        for (let i = 0; i < (options.smallTextSentences * options.smallTextNumber); i++) {
+                                        for (let i = 0; i < (options.smallTextSentences); i++) {
                                             allPersons[+index].smallText.push(texts.small[0]);
                                             texts.small.shift();
                                         }
@@ -101,7 +101,8 @@ export class PersonGenerator {
 
                                     });
 
-                                    return Promise.mapSeries(new Array(options.count), () => PersonGenerator._getPicture(options.pictureWidth, options.pictureHeight))
+                                    console.log('Getting picture...');
+                                    return Promise.mapSeries(new Array(options.count), () => PersonGenerator._getPicture(0, options.pictureWidth, options.pictureHeight))
                                         .then((result: string) => {
                                             Object.keys(allPersons).map(index => {
                                                 allPersons[+index].picture = result[+index];
@@ -109,63 +110,80 @@ export class PersonGenerator {
 
                                             return res(allPersons);
                                         })
-                                        .catch((err: any) => rej(err));
+                                        .catch((err: Error) => rej(err));
                                 })
-                                .catch((err: any) => rej(err));
+                                .catch((err: Error) => rej(err));
                         })
-                        .catch((err: any) => rej(err));
+                        .catch((err: Error) => rej(err));
                 })
-                .catch((err: any) => rej(err));
+                .catch((err: Error) => rej(err));
         })
     }
 
-    static _getPersonInformation(rndNumMin: number, rndNumMax: number) {
-        console.log('Getting person information...');
+    static _getPersonInformation(NumberOfTry: number, rndNumMin: number, rndNumMax: number) {
         return new Promise((resolve: any, reject: any) => {
+            if (NumberOfTry >= MaxNumbersOfTry) {
+                reject(new Error('Exceeded number of try in "_getPersonInformation" method'));
+                return;
+            }
+
             request({
                 url: 'https://api.namefake.com/russian-russia/random',
                 // У сайта нет ssl, поэтому приходится выключать защиту
                 rejectUnauthorized: false
             }, (err: any, res: any, body: any) => {
-                if (err) reject('Error in function _getPersonInformation');
-                try {
-                    JSON.parse(body);
-                } catch (e) {
-                    reject(e);
+                if (err) {
+                    console.log('\x1b[33m%s\x1b[0m', "Error in '_getPersonInformation' method: " + err.code + ". \nTrying to get it again...");
+                    this._getPersonInformation((NumberOfTry + 1), rndNumMin, rndNumMax)
+                        .then((result: any) => resolve(result))
+                        .catch((err: Error) => reject(err))
                 }
-                if (!JSON.parse(body)) reject('Error in function _getPersonInformation');
+                else {
+                    let success = true;
+                    try {
+                        JSON.parse(body);
+                    } catch (e) {
+                        console.log('\x1b[33m%s\x1b[0m', "Error in '_getPersonInformation' method during try parse body: " + e.message + ". \nTrying to get it again...");
+                        success = false;
+                        this._getPersonInformation((NumberOfTry + 1), rndNumMin, rndNumMax)
+                            .then((result: any) => resolve(result))
+                            .catch((err: Error) => reject(err))
+                    }
 
-                let info = JSON.parse(body);
+                    if (success) {
+                        let info = JSON.parse(body);
 
-                let person = {
-                    gender: (info.pict.includes('female') ? 'female' : 'male'),
-                    firstName: "",
-                    secondName: "",
-                    address: {
-                        index: info.address.split(', ')[0],
-                        region: info.address.split(', ')[1],
-                        city: info.address.split(', ')[2],
-                        street: info.address.split(', ')[3],
-                        house: info.address.split(', ')[4]
-                    },
-                    age: this._getPersonAge(info.birth_data),
-                    birthday: {
-                        year: info.birth_data.split('-')[0],
-                        month: info.birth_data.split('-')[1],
-                        day: info.birth_data.split('-')[2]
-                    },
-                    phone: info.phone_h,
-                    email: info.email_u + '@' + info.email_d,
-                    username: info.username,
-                    workCompany: info.company,
-                    photo: '',
-                    smallText: [''],
-                    mediumText: [''],
-                    bigText: [''],
-                    rndNumber: Math.round(rndNumMin - 0.5 + Math.random() * (rndNumMax - rndNumMin + 1)),
-                    picture: ''
-                };
-                resolve(person);
+                        let person = {
+                            gender: (info.pict.includes('female') ? 'female' : 'male'),
+                            firstName: "",
+                            secondName: "",
+                            address: {
+                                index: info.address.split(', ')[0],
+                                region: info.address.split(', ')[1],
+                                city: info.address.split(', ')[2],
+                                street: info.address.split(', ')[3],
+                                house: info.address.split(', ')[4]
+                            },
+                            age: this._getPersonAge(info.birth_data),
+                            birthday: {
+                                year: info.birth_data.split('-')[0],
+                                month: info.birth_data.split('-')[1],
+                                day: info.birth_data.split('-')[2]
+                            },
+                            phone: info.phone_h,
+                            email: info.email_u + '@' + info.email_d,
+                            username: info.username,
+                            workCompany: info.company,
+                            photo: '',
+                            smallText: [''],
+                            mediumText: [''],
+                            bigText: [''],
+                            rndNumber: Math.round(rndNumMin - 0.5 + Math.random() * (rndNumMax - rndNumMin + 1)),
+                            picture: ''
+                        };
+                        resolve(person);
+                    }
+                }
             });
         })
     }
@@ -181,39 +199,59 @@ export class PersonGenerator {
         return Math.floor(differenceInMilisecond / 31536000000);
     }
 
-    static _getRightNameAndPhoto(gender: any) {
-        console.log('Getting photo and russian name...');
+    static _getRightNameAndPhoto(NumberOfTry: number, gender: any) {
         return new Promise((resolve: any, reject: any) => {
-            if (gender.number === 0) resolve();
+            if (NumberOfTry >= MaxNumbersOfTry) {
+                reject(new Error('Exceeded number of try in "_getRightNameAndPhoto" method'));
+                return;
+            }
+            if (gender.number === 0) {
+                resolve();
+                return;
+            }
+
             request({
                 url: 'https://uinames.com/api/?amount=' + gender.number + '&gender=' + gender.gender + '&region=russia&ext',
             }, (err: any, res: any, body: any) => {
-                if (err) reject('Error in function _getRightNameAndPhoto');
-                try {
-                    JSON.parse(body);
-                } catch (e) {
-                    reject(e);
+                if (err) {
+                    console.log('\x1b[33m%s\x1b[0m', "Error in '_getRightNameAndPhoto' method: " + err.code + ". \nTrying to get it again...");
+                    this._getRightNameAndPhoto((NumberOfTry + 1), gender)
+                        .then((result: any) => resolve(result))
+                        .catch((err: Error) => reject(err))
                 }
-                if (!JSON.parse(body)) reject('Error in function _getRightNameAndPhoto');
+                else {
+                    let success = true;
+                    try {
+                        JSON.parse(body);
+                    } catch (e) {
+                        console.log('\x1b[33m%s\x1b[0m', "Error in '_getRightNameAndPhoto' method during try parse body: " + e.message + ". \nTrying to get it again...");
+                        success = false;
+                        this._getRightNameAndPhoto((NumberOfTry + 1), gender)
+                            .then((result: any) => resolve(result))
+                            .catch((err: Error) => reject(err))
+                    }
 
-                let persons;
-                // Если запрос отправлен на одного человека, то приходит JSON, иначе массив из JSON
-                if (Array.isArray(JSON.parse(body))) {
-                    persons = JSON.parse(body).map((person: any) => {
-                        return {
-                            photo: person.photo,
-                            firstName: person.name,
-                            secondName: person.surname
+                    if (success) {
+                        let persons;
+                        // Если запрос отправлен на одного человека, то приходит JSON, иначе массив из JSON
+                        if (Array.isArray(JSON.parse(body))) {
+                            persons = JSON.parse(body).map((person: any) => {
+                                return {
+                                    photo: person.photo,
+                                    firstName: person.name,
+                                    secondName: person.surname
+                                }
+                            })
+                        } else {
+                            persons = [{
+                                photo: JSON.parse(body).photo,
+                                firstName: JSON.parse(body).name,
+                                secondName: JSON.parse(body).surname
+                            }];
                         }
-                    })
-                } else {
-                    persons = [{
-                        photo: JSON.parse(body).photo,
-                        firstName: JSON.parse(body).name,
-                        secondName: JSON.parse(body).surname
-                    }];
+                        resolve(persons);
+                    }
                 }
-                resolve(persons);
             });
         })
     }
@@ -242,21 +280,24 @@ export class PersonGenerator {
         return new Promise((resolve: any, reject: any) => {
             switch (type) {
                 case 'small' :
-                    this._getSmallText(number)
+                    console.log('Getting ' + number + ' sentences for small text...');
+                    this._getSmallText(0, number)
                         .then((result: any) => {
                             resolve(result);
                         })
-                        .catch((err: any) => reject(err));
+                        .catch((err: Error) => reject(err));
                     break;
                 case 'medium':
-                    this._getMediumText(number)
+                    console.log('Getting ' + number + ' sentences for medium text...');
+                    this._getMediumText(0, number)
                         .then((result: any) => {
                             resolve(result);
                         })
-                        .catch((err: any) => reject(err));
+                        .catch((err: Error) => reject(err));
                     break;
                 case 'big':
-                    this._getBigText(number)
+                    console.log('Getting ' + number + ' paragraphs for big text...');
+                    this._getBigText(0, number)
                         .then((result: any) => {
                             resolve(result);
                         })
@@ -264,54 +305,128 @@ export class PersonGenerator {
                     break;
             }
         })
-
     }
 
-    static _getSmallText(sentences: any) {
-        return new Promise((response: any, reject: any) => {
-            console.log('Getting ' + sentences + ' sentences for small text...');
+    static _getSmallText(NumberOfTry: number, sentences: number) {
+        return new Promise((resolve: any, reject: any) => {
+            if (NumberOfTry >= MaxNumbersOfTry) {
+                reject(new Error('Exceeded number of try in "_getSmallText" method'));
+                return;
+            }
 
             request({
                 url: 'https://fish-text.ru/get?type=sentence&format=json&number=' + sentences,
             }, (err: any, res: any, body: any) => {
-                if (err) reject('Error in function _getSmallText');
-                response({small: JSON.parse(body).text.split('.').filter(Boolean)});
+                if (err) {
+                    console.log('\x1b[33m%s\x1b[0m', "Error in '_getSmallText' method: " + err.code + ". \nTrying to get it again...");
+                    this._getSmallText((NumberOfTry + 1), sentences)
+                        .then((result: any) => resolve(result))
+                        .catch((err: Error) => reject(err))
+                }
+                else {
+                    let success = true;
+                    try {
+                        JSON.parse(body);
+                    }
+                    catch (e) {
+                        console.log('\x1b[33m%s\x1b[0m', "Error in '_getSmallText' method during try parse body: " + e.message + ". \nTrying to get it again...");
+                        success = false;
+                    }
+
+                    if (success) {
+                        resolve({small: JSON.parse(body).text.split('.').filter(Boolean)});
+                    }
+                }
             });
         })
     }
 
-    static _getMediumText(sentences: any) {
-        return new Promise((response: any, reject: any) => {
-            console.log('Getting ' + sentences + ' sentences for medium text...');
+    static _getMediumText(NumberOfTry: number, sentences: number) {
+        return new Promise((resolve: any, reject: any) => {
+            if (NumberOfTry >= MaxNumbersOfTry) {
+                reject(new Error('Exceeded number of try in "_getMediumText" method'));
+                return;
+            }
 
             request({
                 url: 'https://fish-text.ru/get?type=sentence&format=json&number=' + sentences,
             }, (err: any, res: any, body: any) => {
-                if (err) reject('Error in function _getMediumText');
-                response({medium: JSON.parse(body).text.split('.').filter(Boolean)});
+                if (err) {
+                    console.log('\x1b[33m%s\x1b[0m', "Error in '_getSmallText' method: " + err.code + ". \nTrying to get it again...");
+                    this._getMediumText((NumberOfTry + 1), sentences)
+                        .then((result: any) => resolve(result))
+                        .catch((err: Error) => reject(err))
+                }
+                else {
+                    let success = true;
+                    try {
+                        JSON.parse(body);
+                    } catch (e) {
+                        console.log('\x1b[33m%s\x1b[0m', "Error in '_getMediumText' method during try parse body: " + e.message + ". \nTrying to get it again...");
+                        success = false;
+                    }
+
+                    if (success) {
+                        resolve({medium: JSON.parse(body).text.split('.').filter(Boolean)});
+                    }
+                }
             });
         })
     }
 
-    static _getBigText(paragraphs: any) {
-        return new Promise((response: any, reject: any) => {
-            console.log('Getting ' + paragraphs + ' paragraphs for big text...');
+    static _getBigText(NumberOfTry: number, paragraphs: number) {
+        return new Promise((resolve: any, reject: any) => {
+            if (NumberOfTry >= MaxNumbersOfTry) {
+                reject(new Error('Exceeded number of try in "_getBigText" method'));
+                return;
+            }
+
             request({
                 url: 'https://fish-text.ru/get?type=paragraph&format=json&number=' + paragraphs,
             }, (err: any, res: any, body: any) => {
-                if (err) reject('Error in function _getBigText');
-                response({big: JSON.parse(body).text.split('\\n').filter(Boolean)});
+
+                if (err) {
+                    console.log('\x1b[33m%s\x1b[0m', "Error in '_getBigText' method: " + err.code + ". \nTrying to get it again...");
+                    this._getBigText((NumberOfTry + 1), paragraphs)
+                        .then((result: any) => resolve(result))
+                        .catch((err: Error) => reject(err))
+                }
+                else {
+                    let success = true;
+                    try {
+                        JSON.parse(body);
+                    }
+                    catch (e) {
+                        console.log('\x1b[33m%s\x1b[0m', "Error in '_getBigText' method during try parse body: " + e.message + ". \nTrying to get it again...");
+                        success = false;
+                    }
+
+                    if (success) {
+                        resolve({big: JSON.parse(body).text.split('\\n').filter(Boolean)});
+                    }
+                }
             });
         })
     }
 
-    static _getPicture(pictureWidth: number, pictureHeight: number) {
-        console.log('Getting picture...');
-        return new Promise((response: any, reject: any) => {
+    static _getPicture(NumberOfTry: number, pictureWidth: number, pictureHeight: number) {
+        return new Promise((resolve: any, reject: any) => {
+            if (NumberOfTry >= MaxNumbersOfTry) {
+                reject(new Error('Exceeded number of try in "_getPicture" method'));
+                return;
+            }
+
             let url = 'https://picsum.photos/' + pictureWidth + '/' + pictureHeight+'.jpg';
-            request({url}, (err: any, res: any, body: any) => {
-                if (err) reject('Error in function _getPicture');
-                response(res.request.uri.href);
+            request({url}, (err: any, res: any) => {
+                if (err) {
+                    console.log('\x1b[33m%s\x1b[0m', "Error in '_getPicture' method: " + err.code + ". \nTrying to get it again...");
+                    this._getPicture((NumberOfTry + 1), pictureWidth, pictureHeight)
+                        .then((result: any) => resolve(result))
+                        .catch((err: Error) => reject(err))
+                }
+                else {
+                    resolve(res.request.uri.href);
+                }
             });
         })
     }
