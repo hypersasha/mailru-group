@@ -12,7 +12,8 @@ class ScrollView extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+        };
 
         this.onScroll = this.onScroll.bind(this);
         this.onWheel = this.onWheel.bind(this);
@@ -58,7 +59,8 @@ class ScrollView extends Component {
         if (this.props.horizontal && ((elem.scrollWidth > elem.scrollLeft + elem.offsetWidth) || delta < 0)) {
             let scrollLeft =  elem.scrollLeft + delta;
             if (elem.scrollTo) {
-                elem.scrollTo(scrollLeft, 0);
+                // elem.scrollTo(scrollLeft, 0);
+                elem.scrollLeft = scrollLeft;
             } else {
                 elem.scrollLeft = scrollLeft;
             }
@@ -68,7 +70,10 @@ class ScrollView extends Component {
     render() {
         const {horizontal, children, style, ...restProps} = this.props;
         let scrollItems = children.map((item) => {
-            return <div className={"scrollItem"} key={'si-' + Math.random()*10000}>{item}</div>
+            return <div className={"scrollItem"} onClick={(e) => {
+                console.log(e.target.offsetLeft);
+                this.scrollRef.current.scrollTo(e.target.offsetLeft - 60, 0);
+            }} key={'si-' + Math.random()*10000}>{item}</div>
         });
         return (
             <div className={classNames("ScrollView", {
